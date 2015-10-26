@@ -8,7 +8,10 @@ import org.json.JSONException;
 
 import android.util.Log;
 
+
 public class Afaria extends CordovaPlugin {
+	
+	
 		
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -42,6 +45,35 @@ public class Afaria extends CordovaPlugin {
 	private boolean getSettings(JSONArray args, CallbackContext callbackContext){
 		boolean result;
 		try {
+			
+			SeedDataAPI.initialize(getApplicationContext());
+		    SeedDataCredentials sdc = new SeedDataCredentials("rpatel", "Jibberj@bber");
+		    result = SeedDataAPI.retrieveSeedData(sdc);
+
+		    BufferedReader reader = null;
+		    Map<String, String> keyValues = null;
+		    try
+		    {
+		        reader = new BufferedReader(new FileReader(result));
+		        String line = null;
+		        keyValues = new java.util.HashMap<String, String>();
+		        result = "";
+
+		        while ((line = reader.readLine()) != null)
+		        {
+		            Log.e("AFARIA", line);
+		            //result.concat(line + "\r\n");
+
+		            result = result.concat(line + "\r\n");
+		        }
+
+		    }
+		    catch(Exception ex) {
+		        throw new RuntimeException(ex);
+
+
+		    }
+
 
 			
 			result = true;			
