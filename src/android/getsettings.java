@@ -1,4 +1,4 @@
-package org.seanheinen.pushudp;
+package gov.capetown.getsettings;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -7,11 +7,9 @@ import org.json.JSONObject;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-
-public class PushUDP extends CordovaPlugin {
+public class GetSettings extends CordovaPlugin {
 	
-	public static final String ACTION_PUSH_UDP_PACKETS = "pushUDPPackets";
-	
+	public static final String ACTION_GET_SETTINGS = "getSettings";
 	
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -19,7 +17,7 @@ public class PushUDP extends CordovaPlugin {
 		try 
 		{
 			
-			if (ACTION_PUSH_UDP_PACKETS.equals(action)) {
+			if (ACTION_PUSH_GET_SETTINGS.equals(action)) {
 				
 				JSONObject arg_object = args.getJSONObject(0);
 	            
