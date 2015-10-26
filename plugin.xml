@@ -19,7 +19,7 @@
                 <param name="android-package" value="gov.capetown.afaria.Afaria"/>
             </feature>
         </config-file>
-        <source-file src="platforms/android/src/libs/AfariaSLL-7.00.6169.0.jar" target-dir="libs" />
+        <source-file src="src/android/libs/AfariaSLL-7.00.6169.0.jar" target-dir="libs" />
 
         <source-file src="src/android/Afaria.java" target-dir="src/gov/capetown/afaria" />      
      </platform>          
