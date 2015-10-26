@@ -1,4 +1,4 @@
-var Afaria = {
+cordova.define("gov.capetown.afaria.Afaria", function(require, exports, module) { var Afaria = {
     getSettings: function(params, successCallback, errorCallback) {
         cordova.exec(
             successCallback, // success callback function
@@ -11,3 +11,5 @@ var Afaria = {
 }
 
 module.exports = Afaria;
+
+});
