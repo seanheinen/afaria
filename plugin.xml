@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
-           id="org.seanheinen.pushudp"
+           id="gov.capetown.getsettings"
       version="0.1.0">
-    <name>PushUDP</name>
-    <description>Cordova Push UDP Plugin</description>
+    <name>GetSettings</name>
+    <description>Cordova Get EPIC Mobile Application Settings</description>
     <license>MIT</license>
-    <keywords>phonegap,UDP</keywords>
+    <keywords>phonegap</keywords>
 
-    <js-module src="www/pushudp.js" name="PushUDP">
-        <clobbers target="window.pushudp" />
+    <js-module src="www/getsettings.js" name="GetSettings">
+        <clobbers target="window.getsettings" />
     </js-module>
 
     <!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="PushUDP">
-                <param name="android-package" value="org.seanheinen.pushudp.PushUDP"/>
+            <feature name="GetSettings">
+                <param name="android-package" value="gov.capetown.getsettings.GetSettings"/>
             </feature>
         </config-file>
 
-        <source-file src="src/android/PushUDP.java" target-dir="src/org/seanheinen/pushudp" />      
+        <source-file src="src/android/GetSettings.java" target-dir="src/gov/capetown/getsettings" />      
      </platform>          
 </plugin>
