@@ -1,4 +1,4 @@
-var GushSettings = {
+var GetSettings = {
     createEvent: function(params, successCallback, errorCallback) {
         cordova.exec(
             successCallback, // success callback function
