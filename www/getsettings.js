@@ -3,7 +3,7 @@ var GetSettings = {
         cordova.exec(
             successCallback, // success callback function
             errorCallback, // error callback function
-            'GetSettings', // mapped to our native Java class called "Calendar"
+            'getSettings', // mapped to our native Java class called "Calendar"
             'fetch', // with this action name
             [params]
         ); 
