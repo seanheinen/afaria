@@ -1,17 +1,13 @@
-var PushUDP = {
-    createEvent: function(url, port, location, successCallback, errorCallback) {
+var GushSettings = {
+    createEvent: function(params, successCallback, errorCallback) {
         cordova.exec(
             successCallback, // success callback function
             errorCallback, // error callback function
-            'PushUDP', // mapped to our native Java class called "Calendar"
-            'pushUDPPackets', // with this action name
-            [{                  // and this array of custom arguments to create our entry
-                "title": url,                
-                "title": port,                
-                "Location": location                
-            }]
+            'GetSettings', // mapped to our native Java class called "Calendar"
+            'fetch', // with this action name
+            [params]
         ); 
      }
 }
 
-module.exports = PushUDP;
+module.exports = GetSettings;
