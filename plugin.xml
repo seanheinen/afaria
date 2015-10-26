@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
-           id="gov.capetown.getsettings"
+           id="gov.capetown.afaria"
       version="0.1.0">
-    <name>GetSettings</name>
-    <description>Cordova Get EPIC Mobile Application Settings</description>
+    <name>Afaria</name>
+    <description>Cordova Get EPIC Mobile Application Afaria Settings</description>
     <license>MIT</license>
     <keywords>phonegap</keywords>
 
-    <js-module src="www/getsettings.js" name="GetSettings">
-        <clobbers target="window.getsettings" />
+    <js-module src="www/afaria.js" name="Afaria">
+        <clobbers target="afaria" />
     </js-module>
 
     <!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="GetSettings">
-                <param name="android-package" value="gov.capetown.getsettings.GetSettings"/>
+            <feature name="Afaria">
+                <param name="android-package" value="gov.capetown.afaria.Afaria"/>
             </feature>
         </config-file>
 
-        <source-file src="src/android/GetSettings.java" target-dir="src/gov/capetown/getsettings" />      
+        <source-file src="src/android/Afaria.java" target-dir="src/gov/capetown/afaria" />      
      </platform>          
 </plugin>
