@@ -8,18 +8,6 @@ import org.json.JSONException;
 
 import android.util.Log;
 
-import com.sybase.afaria.*;
-
-import android.content.Context;
-import android.content.Intent;
-import android.os.PowerManager;
-import android.provider.Settings.Secure;
-import android.util.Log;
-
-import java.util.*;
-
-import java.io.*;
-
 
 public class Afaria extends CordovaPlugin {
 	
@@ -30,73 +18,70 @@ public class Afaria extends CordovaPlugin {
 	 		
 		try 
 		{	
-			String result = "";
+			boolean result;
 			
 			if ("getSettings".equals(action)){
 				result = this.getSettings(args, callbackContext);
-			} 
-			callbackContext.success(result);
-			
-			/*else {
+			} else {
 				//Log.e(LOG_TAG, "Invalid action");
 				result = false;
 			}
 			
 			
 			// handle response
-			if(result.substring(0, 6).compareTo("failed")){
+			if(result == true){
 				callbackContext.success("Success");
 			} else {
 				callbackContext.success("Error");
 			}
-			return result;
-			*/           
-			return true;
+			return result;           
+
 		} catch(Exception e) {
 			callbackContext.error(e.toString());
 		    return false;
 		} 
 	}
 	
-	private String getSettings(JSONArray args, CallbackContext callbackContext){
-		
-		String filePath;
-		String fileContents = "";		
-		
+	private boolean getSettings(JSONArray args, CallbackContext callbackContext){
+		boolean result;
 		try {
 			
-			Context context = this.cordova.getActivity().getApplicationContext();
-			
-			SeedDataAPI.initialize(context);
+			SeedDataAPI.initialize(getApplicationContext());
 		    SeedDataCredentials sdc = new SeedDataCredentials("rpatel", "Jibberj@bber");
-		    filePath = SeedDataAPI.retrieveSeedData(sdc);
+		    result = SeedDataAPI.retrieveSeedData(sdc);
 
 		    BufferedReader reader = null;
 		    Map<String, String> keyValues = null;
 		    try
 		    {
-		    	reader = new BufferedReader(new FileReader(filePath));
-		    	
+		        reader = new BufferedReader(new FileReader(result));
 		        String line = null;
-		        keyValues = new java.util.HashMap<String, String>();		        
+		        keyValues = new java.util.HashMap<String, String>();
+		        result = "";
 
 		        while ((line = reader.readLine()) != null)
-		        {		            
-		        	fileContents = fileContents.concat(line + "\r\n");
+		        {
+		            Log.e("AFARIA", line);
+		            //result.concat(line + "\r\n");
+
+		            result = result.concat(line + "\r\n");
 		        }
-		        reader.close();
 
 		    }
 		    catch(Exception ex) {
-		    	reader.close();
-		    	return "failed - " + ex.toString();
-		    	//throw new RuntimeException(ex);		        
+		        throw new RuntimeException(ex);
+
+
 		    }
 
-		} catch (Exception e){			
-			return "failed - " + e.toString();
+
+			
+			result = true;			
+		} catch (Exception e){
+			
+			result = false;
 		}
-		return fileContents;
+		return result;
 	}
 
 }
