@@ -45,7 +45,7 @@ public class Afaria extends CordovaPlugin {
 			return true;			
 
 		} catch(Exception e) {
-			callbackContext.error("ERROR 1:" + e.toString());
+			callbackContext.error("ERROR 1: " + e.toString());
 		  return false;
 		} 
 	}
@@ -81,12 +81,12 @@ public class Afaria extends CordovaPlugin {
 		  }
 	    catch(Exception ex) {
 	    	reader.close();
-	    	return ""ERROR 2:" + ex.toString();
+	    	return "ERROR 2: " + ex.toString();
 	    	//throw new RuntimeException(ex);		        
 	    }
 
 		} catch (Exception e){			
-			return "ERROR 3:" + e.toString();
+			return "ERROR 3: " + e.toString();
 		}
 		return fileContents;
 	}
