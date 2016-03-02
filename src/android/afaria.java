@@ -57,9 +57,10 @@ public class Afaria extends CordovaPlugin {
 		
 		try {
 			
-			Context context = this.cordova.getActivity().getApplicationContext();
-			
-			SeedDataAPI.initialize(context);
+			//Context context = this.cordova.getActivity().getApplicationContext();						
+			//SeedDataAPI.initialize(context);
+
+			SeedDataAPI.initialize(getApplicationContext());
 	    SeedDataCredentials sdc = new SeedDataCredentials("SA-GLOBAL-EQTEST", "#nrolling16");
 	    filePath = SeedDataAPI.retrieveSeedData(sdc);
 
