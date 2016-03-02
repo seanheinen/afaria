@@ -37,11 +37,11 @@ public class Afaria extends CordovaPlugin {
 			}
 						
 			// handle response
-			if(result.substring(0, 6).compareTo("ERROR")){
+			//if(result.substring(0, 6).compareTo("ERROR")){
 				callbackContext.success(result);
-			} else {
-				callbackContext.error(result);
-			}
+			//} else {
+		//		callbackContext.error(result);
+		//	}
 			return true;			
 
 		} catch(Exception e) {
