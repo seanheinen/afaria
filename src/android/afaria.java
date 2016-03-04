@@ -26,27 +26,31 @@ public class Afaria extends CordovaPlugin {
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
 		try {	
+			boolean result;
 
 			// get settings
-			String result = "";
-			if (action.equals("getSettings")) {						
-				result = this.getSettings(args);
+			String settings = "";
+			if ("getSettings".equals(action)) {
+
+				settings = this.getSettings(args);
+
+				if(settings.contains("ERROR")){
+					callbackContext.error(settings);	
+					result = true;
+				} else {
+					callbackContext.success(settings);	
+					result = false;
+				}
 			} 
 			else {
 				callbackContext.error("Invalid method: " + action);
-				return false;
+				result = false;				
 			}
-						
-			// handle response
-			//if(result.substring(0, 6).compareTo("ERROR")){
-				callbackContext.success(result);
-			//} else {
-		//		callbackContext.error(result);
-		//	}
-			return true;			
+									
+			return result;
 
-		} catch(Exception e) {
-			callbackContext.error("ERROR 1: " + e.toString());
+		} catch(Exception ex) {
+			callbackContext.error("ERROR 1: " + ex.toString());
 		  return false;
 		} 
 	}
@@ -83,17 +87,13 @@ public class Afaria extends CordovaPlugin {
 		  }
 	    catch(Exception ex) {
 	    	reader.close();
-	    	return "ERROR 2: " + ex.toString();
-	    	//throw new RuntimeException(ex);		        
+	    	fileContents = "ERROR 2: " + ex.toString();	    	
 	    }
 	  }
- 		catch(Exception e)
+ 		catch(Exception ex)
     {
-      //Fix this disgraceful crash      
-      return "ERROR 3: " + e.toString();
-
-      //Does this need to be here?
-      //keyValues = new java.util.HashMap<String, String>();
+      //Fix this disgraceful crash                  
+      fileContents = "ERROR 3: " + ex.toString();	    	
 	  }		
 		return fileContents;
 	}
