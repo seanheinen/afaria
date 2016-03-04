@@ -34,6 +34,7 @@ public class Afaria extends CordovaPlugin {
 			} 
 			else {
 				callbackContext.error("Invalid method: " + action);
+				return false;
 			}
 						
 			// handle response
@@ -57,10 +58,11 @@ public class Afaria extends CordovaPlugin {
 		
 		try {
 			
-			Context context = this.cordova.getActivity().getApplicationContext();					
+			Context context = cordova.getActivity().getApplicationContext();					
+			//Context context = this.cordova.getApplicationContext();								
 			SeedDataAPI.initialize(context);
 
-	    SeedDataCredentials sdc = new SeedDataCredentials("rpatel", "Tasty@3");
+	    SeedDataCredentials sdc = new SeedDataCredentials("sa-global-eqtest", "#nrolling16");	    
 	    filePath = SeedDataAPI.retrieveSeedData(sdc);
 
 	    BufferedReader reader = null;
@@ -84,10 +86,15 @@ public class Afaria extends CordovaPlugin {
 	    	return "ERROR 2: " + ex.toString();
 	    	//throw new RuntimeException(ex);		        
 	    }
+	  }
+ 		catch(Exception e)
+    {
+      //Fix this disgraceful crash      
+      return "ERROR 3: " + e.toString();
 
-		} catch (Exception e){			
-			return "ERROR 3: " + e.toString();
-		}
+      //Does this need to be here?
+      //keyValues = new java.util.HashMap<String, String>();
+	  }		
 		return fileContents;
 	}
 
